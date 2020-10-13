@@ -5,7 +5,7 @@ const { Text } = require('@keystonejs/fields');
 const testModules = globby.sync(`packages/**/src/**/test-fixtures.js`, {
   absolute: true,
 });
-multiAdapterRunners().map(({ runner, adapterName }) =>
+multiAdapterRunners('prisma').map(({ runner, adapterName }) =>
   describe(`Adapter: ${adapterName}`, () => {
     testModules
       .map(require)

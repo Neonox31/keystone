@@ -126,18 +126,18 @@ const setupKeystone = adapterName =>
 multiAdapterRunners().map(({ runner, adapterName }) =>
   describe(`Adapter: ${adapterName}`, () => {
     describe(`One-to-many relationships`, () => {
-      describe('Read', () => {
-        test(
+      describe.only('Read', () => {
+        test.only(
           'one',
           runner(setupKeystone, async ({ keystone }) => {
             await createComplexData(keystone);
             await Promise.all(
               [
                 ['A', 1],
-                ['B', 2],
-                ['C', 0],
-                ['D', 1],
-                ['E', 0],
+                // ['B', 2],
+                // ['C', 0],
+                // ['D', 1],
+                // ['E', 0],
               ].map(async ([name, count]) => {
                 const { data, errors } = await keystone.executeGraphQL({
                   query: `{ allCompanies(where: { location: { name_contains: "${name}"}}) { id }}`,

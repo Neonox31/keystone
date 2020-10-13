@@ -18,9 +18,12 @@ async function setupServer({
   keystoneOptions,
   graphqlOptions = {},
 }) {
-  const Adapter = { mongoose: MongooseAdapter, knex: KnexAdapter, prisma: PrismaAdapter }[
-    adapterName
-  ];
+  const Adapter = {
+    mongoose: MongooseAdapter,
+    knex: KnexAdapter,
+    prisma_postgresql: PrismaAdapter,
+    prisma_sqlite: PrismaAdapter,
+  }[adapterName];
 
   const argGenerator = {
     mongoose: getMongoMemoryServerConfig,
@@ -31,9 +34,26 @@ async function setupServer({
           process.env.DATABASE_URL || process.env.KNEX_URI || 'postgres://localhost/keystone',
       },
     }),
-    prisma: () => ({
+    prisma_postgresql: () => ({
       dropDatabase: true,
       url: process.env.DATABASE_URL,
+      provider: 'postgresql',
+      // Put the generated client at a unique path
+      getPrismaPath: ({ prismaSchema }) =>
+        path.join(
+          '.api-test-prisma-clients',
+          crypto.createHash('sha256').update(prismaSchema).digest('hex')
+        ),
+      // Slice down to the hash make a valid postgres schema name
+      getDbSchemaName: ({ prismaSchema }) =>
+        crypto.createHash('sha256').update(prismaSchema).digest('hex').slice(0, 16),
+      // Turn this on if you need verbose debug info
+      enableLogging: false,
+    }),
+    prisma_sqlite: () => ({
+      dropDatabase: true,
+      url: process.env.DATABASE_URL,
+      provider: 'sqlite',
       // Put the generated client at a unique path
       getPrismaPath: ({ prismaSchema }) =>
         path.join(
@@ -200,9 +220,15 @@ function multiAdapterRunners(only = process.env.TEST_ADAPTER) {
       after: _after(() => {}),
     },
     {
-      runner: _keystoneRunner('prisma', () => {}),
-      adapterName: 'prisma',
-      before: _before('prisma'),
+      runner: _keystoneRunner('prisma_postgresql', () => {}),
+      adapterName: 'prisma_postgresql',
+      before: _before('prisma_postgresql'),
+      after: _after(() => {}),
+    },
+    {
+      runner: _keystoneRunner('prisma_sqlite', () => {}),
+      adapterName: 'prisma_sqlite',
+      before: _before('prisma_sqlite'),
       after: _after(() => {}),
     },
   ].filter(a => typeof only === 'undefined' || a.adapterName === only);
