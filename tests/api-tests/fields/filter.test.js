@@ -144,37 +144,37 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
                 );
               }
               if (mod.supportedFilters.includes('string')) {
-                test(
+                test.skip(
                   `Contains`,
                   withKeystone(({ keystone }) =>
                     match(keystone, { [`${fieldName}_contains`]: 'oo' }, [3, 4])
                   )
                 );
-                test(
+                test.skip(
                   `Not Contains`,
                   withKeystone(({ keystone }) =>
                     match(keystone, { [`${fieldName}_not_contains`]: 'oo' }, [0, 1, 2, 5, 6])
                   )
                 );
-                test(
+                test.skip(
                   `Starts With`,
                   withKeystone(({ keystone }) =>
                     match(keystone, { [`${fieldName}_starts_with`]: 'foo' }, [3, 4])
                   )
                 );
-                test(
+                test.skip(
                   `Not Starts With`,
                   withKeystone(({ keystone }) =>
                     match(keystone, { [`${fieldName}_not_starts_with`]: 'foo' }, [0, 1, 2, 5, 6])
                   )
                 );
-                test(
+                test.skip(
                   `Ends With`,
                   withKeystone(({ keystone }) =>
                     match(keystone, { [`${fieldName}_ends_with`]: 'BAR' }, [2, 3])
                   )
                 );
-                test(
+                test.skip(
                   `Not Ends With`,
                   withKeystone(({ keystone }) =>
                     match(keystone, { [`${fieldName}_not_ends_with`]: 'BAR' }, [0, 1, 4, 5, 6])

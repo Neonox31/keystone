@@ -109,7 +109,7 @@ export const filterTests = withKeystone => {
     )
   );
 
-  test(
+  test.skip(
     'Filter: document_i (case-insensitive)',
     withKeystone(({ keystone }) =>
       match(keystone, { body: { document_i: DOC1 } }, [
@@ -145,7 +145,7 @@ export const filterTests = withKeystone => {
     )
   );
 
-  test(
+  test.skip(
     'Filter: document_not_i (case-insensitive)',
     withKeystone(({ keystone }) =>
       match(keystone, { body: { document_not_i: DOC1 } }, [
@@ -254,7 +254,7 @@ export const filterTests = withKeystone => {
     )
   );
 
-  test(
+  test.skip(
     'Filter: document_contains (case_sensitive)',
     withKeystone(({ keystone }) =>
       match(keystone, { body: { document_contains: 'This is bold' } }, [
@@ -266,7 +266,7 @@ export const filterTests = withKeystone => {
     )
   );
 
-  test(
+  test.skip(
     'Filter: document_contains_i (case_insensitive)',
     withKeystone(({ keystone }) =>
       match(keystone, { body: { document_contains_i: 'This is bold' } }, [
@@ -282,7 +282,7 @@ export const filterTests = withKeystone => {
     )
   );
 
-  test(
+  test.skip(
     'Filter: document_not_contains (case_sensitive)',
     withKeystone(({ keystone }) =>
       match(keystone, { body: { document_not_contains: 'This is bold' } }, [
@@ -301,7 +301,7 @@ export const filterTests = withKeystone => {
       ])
     )
   );
-  test(
+  test.skip(
     'Filter: document_not_contains_i (case_insensitive)',
     withKeystone(({ keystone }) =>
       match(keystone, { body: { document_not_contains_i: 'This is bold' } }, [

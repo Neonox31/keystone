@@ -41,7 +41,11 @@ export const fieldName = 'company';
 
 export const supportedFilters = ['null_equality', 'equality', 'in_empty_null', 'in_equal'];
 
-export const testMatrix = ['enum', 'string', 'integer'];
+export const testMatrix = [
+  // 'enum',
+  'string',
+  'integer',
+];
 
 export const getTestFields = matrixValue => ({
   name: { type: Text },
