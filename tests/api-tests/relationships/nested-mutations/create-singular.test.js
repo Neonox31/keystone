@@ -105,7 +105,7 @@ function setupKeystone(adapterName) {
 multiAdapterRunners().map(({ runner, adapterName }) =>
   describe(`Adapter: ${adapterName}`, () => {
     describe('no access control', () => {
-      test.skip(
+      test(
         'create nested from within create mutation',
         runner(setupKeystone, async ({ keystone }) => {
           const groupName = sampleOne(gen.alphaNumString.notEmpty());
@@ -152,7 +152,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
         })
       );
 
-      test.skip(
+      test(
         'create nested from within update mutation',
         runner(setupKeystone, async ({ keystone }) => {
           const groupName = sampleOne(gen.alphaNumString.notEmpty());
@@ -221,7 +221,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
       ].forEach(group => {
         describe(`${group.func} on related list`, () => {
           if (group.allowed) {
-            test.skip(
+            test(
               'does not throw error when creating nested within create mutation',
               runner(setupKeystone, async ({ keystone }) => {
                 const groupName = sampleOne(gen.alphaNumString.notEmpty());
@@ -258,7 +258,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
               })
             );
 
-            test.skip(
+            test(
               'does not throw error when creating nested within update mutation',
               runner(setupKeystone, async ({ keystone }) => {
                 const groupName = sampleOne(gen.alphaNumString.notEmpty());
@@ -305,7 +305,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
               })
             );
           } else {
-            test.skip(
+            test(
               'throws error when creating nested within create mutation',
               runner(setupKeystone, async ({ keystone }) => {
                 const alphaNumGenerator = gen.alphaNumString.notEmpty();
@@ -368,7 +368,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
               })
             );
 
-            test.skip(
+            test(
               'throws error when creating nested within update mutation',
               runner(setupKeystone, async ({ keystone }) => {
                 const groupName = sampleOne(gen.alphaNumString.notEmpty());

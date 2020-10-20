@@ -23,7 +23,7 @@ function setupKeystone(adapterName) {
 multiAdapterRunners().map(({ runner, adapterName }) =>
   describe(`Adapter: ${adapterName}`, () => {
     describe('errors on incomplete data', () => {
-      test.skip(
+      test(
         'when neither id or create data passed',
         runner(setupKeystone, async ({ keystone }) => {
           // Create an item that does the linking
@@ -42,7 +42,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
         })
       );
 
-      test.skip(
+      test(
         'when both id and create data passed',
         runner(setupKeystone, async ({ keystone }) => {
           // Create an item that does the linking

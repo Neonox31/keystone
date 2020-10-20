@@ -227,12 +227,12 @@ class PrismaAdapter extends BaseKeystoneAdapter {
       }
     } else if (this.provider === 'sqlite') {
       for (const result of await this.prisma.$queryRaw(
-        `SELECT name FROM dev.sqlite_master WHERE type='table'`
+        `SELECT name FROM dev.sqlite_master WHERE type='table';`
       )) {
         if (result.name.includes('_Migration')) {
           migrationNeeded = false;
         }
-        await this.prisma.$queryRaw(`DELETE FROM ${result.name}`);
+        await this.prisma.$queryRaw(`DELETE FROM "${result.name}";`);
       }
     }
 

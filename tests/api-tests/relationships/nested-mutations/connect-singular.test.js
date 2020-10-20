@@ -105,7 +105,7 @@ function setupKeystone(adapterName) {
 multiAdapterRunners().map(({ runner, adapterName }) =>
   describe(`Adapter: ${adapterName}`, () => {
     describe('no access control', () => {
-      test.skip(
+      test(
         'link nested from within create mutation',
         runner(setupKeystone, async ({ keystone }) => {
           const groupName = sampleOne(gen.alphaNumString.notEmpty());
@@ -135,7 +135,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
         })
       );
 
-      test.skip(
+      test(
         'link nested from within update mutation',
         runner(setupKeystone, async ({ keystone }) => {
           const groupName = sampleOne(gen.alphaNumString.notEmpty());
@@ -187,7 +187,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
     });
 
     describe('non-matching filter', () => {
-      test.skip(
+      test(
         'errors if connecting an item which cannot be found during creating',
         runner(setupKeystone, async ({ keystone }) => {
           const FAKE_ID = adapterName === 'mongoose' ? '5b84f38256d3c2df59a0d9bf' : 100;
@@ -210,7 +210,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
         })
       );
 
-      test.skip(
+      test(
         'errors if connecting an item which cannot be found during update',
         runner(setupKeystone, async ({ keystone }) => {
           const FAKE_ID = adapterName === 'mongoose' ? '5b84f38256d3c2df59a0d9bf' : 100;
@@ -251,7 +251,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
       ].forEach(group => {
         describe(`${group.func} on related list`, () => {
           if (group.allowed) {
-            test.skip(
+            test(
               'does not throw error when linking nested within create mutation',
               runner(setupKeystone, async ({ keystone }) => {
                 const groupName = sampleOne(gen.alphaNumString.notEmpty());
@@ -288,7 +288,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
                 expect(errors).toBe(undefined);
               })
             );
-            test.skip(
+            test(
               'does not throw error when linking nested within update mutation',
               runner(setupKeystone, async ({ keystone }) => {
                 const groupName = sampleOne(gen.alphaNumString.notEmpty());
@@ -351,7 +351,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
               })
             );
           } else {
-            test.skip(
+            test(
               'throws error when linking nested within update mutation',
               runner(setupKeystone, async ({ keystone }) => {
                 const groupName = sampleOne(gen.alphaNumString.notEmpty());
@@ -397,7 +397,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
               })
             );
 
-            test.skip(
+            test(
               'throws error when linking nested within create mutation',
               runner(setupKeystone, async ({ keystone }) => {
                 const groupName = sampleOne(gen.alphaNumString.notEmpty());
