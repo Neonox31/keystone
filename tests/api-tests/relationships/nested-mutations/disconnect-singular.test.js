@@ -43,7 +43,7 @@ function setupKeystone(adapterName) {
 multiAdapterRunners().map(({ runner, adapterName }) =>
   describe(`Adapter: ${adapterName}`, () => {
     describe('no access control', () => {
-      test(
+      test.skip(
         'removes matched item from list',
         runner(setupKeystone, async ({ keystone }) => {
           const groupName = `foo${sampleOne(alphanumGenerator)}`;
@@ -102,7 +102,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
         })
       );
 
-      test(
+      test.skip(
         'silently succeeds if used during create',
         runner(setupKeystone, async ({ keystone }) => {
           const FAKE_ID = '5b84f38256d3c2df59a0d9bf';
@@ -130,7 +130,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
         })
       );
 
-      test(
+      test.skip(
         'silently succeeds if no item to disconnect during update',
         runner(setupKeystone, async ({ keystone }) => {
           const FAKE_ID = '5b84f38256d3c2df59a0d9bf';
@@ -163,7 +163,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
         })
       );
 
-      test(
+      test.skip(
         'silently succeeds if item to disconnect does not match during update',
         runner(setupKeystone, async ({ keystone }) => {
           const groupName = `foo${sampleOne(alphanumGenerator)}`;
@@ -212,7 +212,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
 
     describe('with access control', () => {
       describe('read: false on related list', () => {
-        test(
+        test.skip(
           'has no effect when disconnecting a specific id',
           runner(setupKeystone, async ({ keystone }) => {
             const groupName = sampleOne(alphanumGenerator);

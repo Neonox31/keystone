@@ -43,7 +43,7 @@ function setupKeystone(adapterName) {
 multiAdapterRunners().map(({ runner, adapterName }) =>
   describe(`Adapter: ${adapterName}`, () => {
     describe('no access control', () => {
-      test(
+      test.skip(
         'removes item from list',
         runner(setupKeystone, async ({ keystone }) => {
           const groupName = `foo${sampleOne(alphanumGenerator)}`;
@@ -99,7 +99,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
         })
       );
 
-      test(
+      test.skip(
         'silently succeeds if used during create',
         runner(setupKeystone, async ({ keystone }) => {
           // Create an item that does the linking
@@ -124,7 +124,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
         })
       );
 
-      test(
+      test.skip(
         'silently succeeds if no item to disconnect during update',
         runner(setupKeystone, async ({ keystone }) => {
           // Create an item to link against
@@ -158,7 +158,7 @@ multiAdapterRunners().map(({ runner, adapterName }) =>
 
     describe('with access control', () => {
       describe('read: false on related list', () => {
-        test(
+        test.skip(
           'has no effect when using disconnectAll',
           runner(setupKeystone, async ({ keystone }) => {
             const groupName = sampleOne(alphanumGenerator);
