@@ -1,5 +1,11 @@
 # @keystonejs/test-utils
 
+## 9.1.0
+
+### Minor Changes
+
+- [`e3455bd20`](https://github.com/keystonejs/keystone/commit/e3455bd2027534db29d1f9a8bca905f8eb33679e) [#3979](https://github.com/keystonejs/keystone/pull/3979) Thanks [@timleslie](https://github.com/timleslie)! - Added support for the `TEST_ADAPTER` environment variable to select a single adapter when running tests.
+
 ## 9.0.1
 
 ### Patch Changes
